@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>修改资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="__ADMIN__/plugins/layui/css/layui.css" media="all" />
+      <link rel="stylesheet" href="__ADMIN__/plugins/font-awesome/css/font-awesome.min.css">
+    
+  </head>
+
+  <body>
+        <div style="margin: 15px;">                            
+            <form class="layui-form" action="{:u('system/slideupload')}" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="id" value="{$slides.id}" />
+                <div class="layui-form-item">
+                  <label class="layui-form-label" style="text-align: center;">动画2 ：</label>
+                  <div class="site-demo-upbar">
+                    <img id="LAY_demo_upload" src="{$slides.address3}" style="width: 480px;height:200px;padding: 10px;">
+                    <div class="layui-box layui-upload-button"><input type="file" name="address" class="layui-upload-file" id="test"><span class="layui-upload-icon"><i class="layui-icon"></i>上传图片</span></div>
+                  </div>
+                </div>
+                
+               <div class="layui-form-item">
+                    <div class="layui-input-block">
+                         <button class="layui-btn" type="submit" lay-submit=""  lay-filter="demo1" >立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+    </html>

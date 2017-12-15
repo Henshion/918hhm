@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>菜单设置</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="__ADMIN__/hhmblog.css" media="all" />
+    <link rel="stylesheet" href="__ADMIN__/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="__ADMIN__/css/global.css" media="all">
+    <link rel="stylesheet" href="__ADMIN__/plugins/font-awesome/css/font-awesome.min.css">
+        <link href="__ADMIN__/css/animate.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+    <div class="animated fadeInRight">
+      <div style="margin: 15px;">
+        <fieldset class="layui-elem-field">
+          <legend>
+              <button class="layui-btn" id="linkadd"><i class="fa fa-plus-square" aria-hidden="true">&nbsp;&nbsp;添加</i></button>
+        </legend>
+
+        <div class="layui-form">
+          <table class="layui-table">
+            <colgroup>
+              <col width="50">
+              <col width="200">
+              <col width="200">
+              <col width="200">
+              <col width="200">
+              <col width="200">
+              <col width="200">
+              <col width="200">
+              <col width="300">
+            </colgroup>
+            <thead>
+              <tr class="global-center">
+                <th>ID</th>
+                <th>昵称</th>
+                <th>链接</th>
+                 <th>缩略图</th>
+                 <th>排序</th>
+                <th>状态</th>
+                <th>编辑</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <volist name="links" id="vo">
+              <tr class="tbody-center">
+                <td>{$vo.id}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.link}</td>
+                <td><if condition="$vo[pic] neq ''">
+                  <img src="__ROOT__/{$vo.pic}" height="30">
+                  <else /> 
+                  暂无缩略图
+                  </if></td>
+                <td>{$vo.sort}</td>
+                <td><if condition="$vo['state'] eq 1 ">
+                    <a class="layui-btn layui-btn-mini layui-btn-normal">启动</a>
+                    <else />
+                  <a class="layui-btn layui-btn-primary layui-btn-mini">关闭</a>
+                    </if></td>
+                <td>
+                  <a class="layui-btn layui-btn-normal layui-btn-small" id="upd_{$vo.id}"><i class="layui-icon"></i></a>
+                                                        
+                  <a class="layui-btn layui-btn-primary layui-btn-small" id="del_{$vo.id}"><i class="layui-icon"></i></a>
+                </td>
+              </tr>
+              <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+              <script src="__PUBLIC__/layer/layer.js"></script>
+              <script>
+                    $('#upd_{$vo.id}').click(function(){
+                      var url = '{:u("System/linkupd",array("id"=>$vo[id]))}';
+                      $.get(url,function(data){
+                      if(data.status == 'error'){
+                        layer.msg(data.msg,{icon: 5});
+                        return;
+                      }
+                      layer.open({
+                          title:'修改',
+                          type: 1,
+                          skin: 'layui-layer-rim', //加上边框
+                           area: ['380px'],
+                          content: data,
+                      });
+                    })
+                     });  
+
+                $('#del_{$vo.id}').on('click', function(){
+                 layer.confirm('您确定删除？', {
+                      btn: ['确定','取消'] //按钮
+                      }, function(){
+                        location.href = '{:u("system/linkdel",array("id"=>$vo[id]))}'; 
+                      }, function(){
+                        layer.msg('相信您的选择是对的', {
+                          time: 1000, //20s后自动关闭
+                        });
+                      }); 
+                });  
+                </script>                        
+              </volist>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<script type="text/javascript" src="__ADMIN__/plugins/layui/layui.js"></script>
+<script>
+layui.use(['form'], function() {
+        var form = layui.form(),
+          layer = layui.layer;
+          $('#linkadd').on('click', function(){
+              var url = "{:U('System/linkadd')}";
+              $.get(url,function(data){
+                if(data.status == 'error'){
+                  layer.msg(data.msg,{icon: 5});
+                  return;
+                }
+                layer.open({
+                    title:'添加链接',
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                     area: ['380px'],
+                    content: data,
+                });
+              })
+          });
+});
+</script>
+
+
+</body>
+
+</html>

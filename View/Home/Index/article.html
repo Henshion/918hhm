@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="{$systems.keywords}">
+  <meta name="Description" content="{$systems.describe}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="applicable-device" content="pc,mobile">
+    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
+    <link href='__INDEX__/css/allStyle/head-homePage-old.css' rel='stylesheet'/>
+  <link href="__INDEX__/css/allStyle/header.css" rel="stylesheet">
+  <link href="__INDEX__/css/allStyle/footer.css" rel="stylesheet">
+  <link href="__INDEX__/css/allStyle/mobile.css" rel="stylesheet">
+  <link href="__INDEX__/css/article/list-article.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="__ADMIN__/plugins/font-awesome/css/font-awesome.min.css">
+  <script src="__INDEX__/plug-in/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <title>{$systems.webtitle}</title>
+  </head>
+  <body>
+  <iframe frameborder="0" style="display: none;"></iframe>
+  <div id="bdshare_s" style="display: block;">
+  <iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe>
+  <div id="bdshare_m" style="display: none;">
+  <div id="bdshare_m_c"><h6>分享到</h6><ul><li><a href="#" class="bds_mshare mshare">一键分享</a></li><li><a href="#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="#" class="bds_renren rrw">人人网</a></li><li><a href="#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="#" class="bds_more">更多...</a></li></ul><p><a href="#" class="goWebsite">百度分享</a></p></div></div></div>
+<include file="Public/header" />
+  <!--主体-->
+  <div class="article-list-bd">
+    <div class="bd-wrapper">
+      <div class="bd-hd">
+        <div class="bd-container">
+          <ul class="container-menu">
+          <volist name="tptg" id="vo">
+            <li>
+              <div class="menu-info">
+                <div class="info-triangle"></div>
+                <div class="info-perview">
+                  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                    <a class="bds_qzone" title="分享到QQ空间" href="#"></a>
+                    <a class="bds_tsina" title="分享到新浪微博" href="#"></a>
+                    <a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
+                    <a class="bds_renren" title="分享到人人网" href="#"></a>
+                    <a class="bds_douban db" href="#"></a>
+                    <a class="bds_sqq sqq" href="#"></a>
+                    <a class="bds_kaixin001 kxw" href="#"></a>
+                    <a class="bds_fbook facebook" href="#"></a>
+                    <a class="bds_twi twitter" href="#"></a>
+                    <span class="bds_more"></span>
+                  </div>
+              <if condition="$vo[pic] neq ''">
+                        <img src="__ROOT__/{$vo.pic}" alt="{$vo.title}">
+                        <else /> 
+                            <img src="__PUBLIC__/img/1.jpg" alt="暂无缩略图">
+                            </if>
+                  </a>
+                </div>
+                <div class="info-inner">
+                  <h3><span>[ 标签：<a href="#">{$vo.view}</a> ]</span>{$vo.title}</h3>
+                  <div class="inner-brief">
+                   {$vo.description}...
+                  </div>
+                  
+                  <a href="{:u('Index/article1',array('id'=>$vo[id]))}">
+                  <div class="inner-enter">
+                      <div class="enter-btn">
+                          <p>点击阅读</p>
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                      </div>
+                  </div>
+                  </a>
+                  <div class="inner-dialog">
+                    <div class="time">
+
+                      <i class="fa fa-user-o" aria-hidden="true"></i>{$vo.author}
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>{$vo.time|date="Y-m-d H:i:s",###}
+
+                    </div>
+                    <div class="another">
+                      <ul>
+                        <li><i class="fa fa-eye" aria-hidden="true"></i>251</li>
+                        <li><i class="fa fa-thumbs-up" aria-hidden="true"></i>{$vo.zan}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-timeAxis">
+                <div class="timeAxis-topLine line"></div>
+                <div class="timeAxis-ball"><span></span><p class="time">{$vo.time|date="Y-m-d",###}</p></div>
+                <div class="timeAxis-bottomLine line"></div>
+              </div>
+            </li>
+
+            </volist>
+          </ul>
+          <div class="bd-index">
+            <div class="index-list">
+              <div class="page">
+              {$page}
+              </div>
+           </div>
+          </div>
+        </div>
+        <div class="bd-sidebar">
+          <div class="sidebar-column sidebar">
+            <div class="sidebar-container">
+              <h3><i class="fa fa-hand-o-right" aria-hidden="true"></i>热门推荐</h3>
+              <ul class="sidebar-menu">
+              <volist name="tptb" id="vo">
+               <li><if condition="C('WEB_URL') eq 1"><a title="{$vo.title}" href="__ROOT__/article/{$vo.id}.html"><else/>
+    <a title="{$vo.title}" href="{:U('Home/Index/article1',array('id'=>$vo['id']))}"></if>{$vo.title}</a></li>
+                </volist>
+            </ul>
+            </div>
+          </div>
+          <div class="sidebar-hot sidebar">
+            <div class="sidebar-container">
+              <h3><i class="fa fa-tags" aria-hidden="true"></i>精选内容</h3>
+              <ul class="sidebar-menu">
+                <volist name="tptc" id="vo">
+                <li><if condition="C('WEB_URL') eq 1"><a title="{$vo.title}" href="__ROOT__/article/{$vo.id}.html"><else/>
+      <a title="{$vo.title}" href="{:U('Home/Index/article1',array('id'=>$vo['id']))}"></if>{$vo.title}</a></li>
+              </volist>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--footer-->
+ <include file="Public/footer" />
+
+<script src="__INDEX__/js/Popup.js" type="text/javascript"></script>
+<script>
+(function(){
+  var $pop = $('.plug-pop');
+  $.each($pop,function(){
+    var data = $(this).data('pop'),
+      option = getOption(data);
+    $(this).Popup(option);
+  });
+  function getOption(data){
+    var option = {},
+      op = data.replace('hover','mouseenter').split(';');
+    $.each(op,function(){
+      if(this!=''){
+        var attr = this.split(':');
+        option[attr[0]] = attr[1];
+        };
+      });
+      return option;
+    };
+  var $resultNum =  $('.container-menu').find('li').size(),
+      $index = $('.bd-index');
+  if(!$resultNum){
+    $('<div class="no-index">您搜索的内容为空..</div>').prependTo($('.bd-container'));
+  }
+})();
+</script>
+</body></html>
