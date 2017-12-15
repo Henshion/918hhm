@@ -1,0 +1,112 @@
+  <!--页头-->
+  <div class="blog-header">
+    <div class="header-topBar">
+      <div class="topBar-container">
+        <volist name="menus" id="vo">
+        <div class="topBar-home1"><a href="{$vo.link}">{$vo.name}</a></div>
+        </volist>
+        <div class='header'>
+          <div class='header-container'>
+          
+            <div class='container-nav'>
+              <ul class='nav-list'>
+                <li class='plug-pop list-item' data-pop='trigger:pop-member;event:click;effect:slideDown;'>
+                  <p>会员登录</p><span><i></i></span>
+                  <div class='container-member  pop-trigger' id='pop-member'>
+                    <ul class='member-top'>
+                      <li>
+                        <div class='list-preview'>
+                            <img src="__INDEX__/image/topbar/coww.jpg">
+                        </div>
+                        <p>会员账号</p>
+                      </li>
+                      <li>
+                        <a href="/qqLogin/index.php">
+                          <div class='list-preview'>
+                            <img src="__INDEX__/image/topbar/qq.jpg">
+                          </div>
+                          <p>QQ账号</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/plus/weixin.php">
+                          <div class='list-preview'>
+                              <img src="__INDEX__/image/topbar/weixin.jpg">
+                          </div>
+                          <p>微信账号</p>
+                        </a>
+                      </li>
+                      <li>
+                        <div class='list-preview'>
+                            <img src="__INDEX__/image/topbar/sina.jpg">
+                          </div>
+                          <p>新浪账号</p>
+                      </li>
+                    </ul>
+                    <div class='member-bottom'>
+                      <div>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$blog_find.qq}&site=qq&menu=yes">
+                          <p>与博主聊人生</p>
+                          <img border="0" src="http://wpa.qq.com/pa?p=2:595700844:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+                        </a>
+                      </div>
+                      <div>
+                        <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=34cf84d3b4992dffdad4efd722aeb16d94e99473e8cdce4fbb1bc1477c986512">
+                          <p>讨论群:</p>
+                          <img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="学习生活帮" title="学习生活帮">
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                </li>
+                <li class='plug-pop list-item' data-pop='trigger:pop-friend;event:click;effect:slideDown;'>
+                  <p>友情链接</p><span><i></i></span>
+                  <div class='container-friend pop-trigger' id='pop-friend'>
+                    <ul class='friend-wrapper'>
+                    <volist name="links" id="vo">
+                      <li>
+                        <a href='{$vo.link}' target='_blanket'>
+                           <div class='feature' style='background-image:url({$vo.pic})'>
+                              <div class='feature-mask'>
+                                <span class='mask-circular'></span>
+                                <p></p>
+                              </div>
+                           </div>
+                           <p>{$vo.name}</p>
+                        </a>
+                      </li>
+                    </volist>
+                    </ul>
+                  </div>
+                </li>
+                <li class='last list-item'><p>博主信息</p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-menu">
+
+      <div class="menu-container">
+        <div class="bar-logo">
+          <div class="logo-cow"></div>
+          <div class="logo-info"></div>
+        </div>
+        <div class="menu-lt menu">
+              <a href="{:u('index/cate',array('id'=>$cates1[id]))}">{$cates1.name}</a>
+              <a href="{:u('index/cate',array('id'=>$cates2[id]))}">{$cates2.name}</a>
+        </div>
+        <div class="menu-rt menu">
+              <a href="{:u('index/cate',array('id'=>$cates3[id]))}">{$cates3.name}</a>
+              <a href="{:u('index/cate',array('id'=>$cates4[id]))}">{$cates4.name}</a>
+        </div>
+        <div class="menu-logo"></div>
+        <form name="formsearch" class="dede-form menu-search" action="{:u('Index/search')}" method="post">
+        <input  class="search-form" placeholder="输入关键字" name="kw" value="<?php echo I('kw');?>" placeholder="面向对象" type="text">
+        <button lass="submit" type="submit"><span><i class='icon-prev'>&#xe620;</i></span></button>
+      </form>
+      </div>
+      
+    </div>
+  </div>
